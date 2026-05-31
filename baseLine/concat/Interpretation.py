@@ -14,14 +14,16 @@ from torch.utils.data import DataLoader, SequentialSampler
 
 sys.path.append("/mnt/sda/jyz/Code_Change/CommitMaster/")  # Change to root directory of your project
 
-from JITFine.my_util import TextDataset, get_line_level_metrics
-from JITFine.concat.run import commit_with_codes
+from JIT_BiCC_main.my_util import TextDataset, get_line_level_metrics
+from JIT_BiCC_main.concat.run import commit_with_codes
 
 logger = logging.getLogger(__name__)
 
 
+
 def test_interpret(args, model, tokenizer, best_threshold=0.5):
     # build dataloader
+
     cache_dataset = os.path.dirname(args.test_data_file[0]) + f'/test_set_cache_msg{args.max_msg_length}.pkl'
     if args.no_abstraction:
         cache_dataset = cache_dataset.split('.pkl')[0] + '_raw.pkl'
